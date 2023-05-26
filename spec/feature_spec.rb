@@ -14,25 +14,25 @@ RSpec.describe "Last Airbender Home and Search Pages", type: :feature do
       select("Air Nomads", from: "nation")
       select("Earth Kingdom", from: "nation")
       select("Water Tribes", from: "nation")
-      click_button "Search For Members"
     end
   end
 
-  feature "Search for Members by their Nation" do
+  feature "Search for Members by their Nation", :vcr do
     scenario "I search for fire members" do
       visit root_path
       select("Fire Nation", from: "nation")
       click_button "Search For Members"
       expect(current_path).to eq(search_path)
 
-      expect(page).to have_content("Total Members: 100")
+      expect(page).to have_content("Total Members: 97")
 
       within(".member_details") do
-        expect(page).to have_content("Name:")
+        within("#5cf5679a915ecad153ab68fd")
+        expect(page).to have_content("Name: Chan (Fire Nation admiral)")
         expect(page).to have_content("Photo:")
-        expect(page).to have_content("Allies:")
-        expect(page).to have_content("Enemies:")
-        expect(page).to have_content("Affiliation:")
+        expect(page).to have_content("Allies: [\"Ozai\"]")
+        expect(page).to have_content("Enemies: [\"Earth Kingdom\"]")
+        expect(page).to have_content("Affiliation: Fire Nation Navy")
       end
     end
   end
