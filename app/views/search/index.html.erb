@@ -1,0 +1,13 @@
+<h3>Search results for <%= @nation.name %></h1>
+<p>Total Members: <%= @nation.total_members %></p>
+<div class="member_details">
+  <% @nation.members.each do |member| %>
+    <div id="<%member.id%>">
+      <p>Name: <%= member.name %></p>
+      <p>Photo: <%= member.photo %></p>
+      <p>Allies: <%= member.allies %></p>
+      <p>Enemies: <%= member.enemies %></p>
+      <p>Affiliation: <%= member.affiliation %></p>
+    </div>
+  <% end %>
+</div>
