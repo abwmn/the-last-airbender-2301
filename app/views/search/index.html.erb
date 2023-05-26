@@ -1,13 +1,13 @@
-<h3>Search results for <%= @nation.name %></h1>
-<p>Total Members: <%= @nation.total_members %></p>
+<h3>Search results for <%= @nation.first[:affiliation] %></h1>
+<p>Total Members: <%= @nation.count %></p>
 <div class="member_details">
-  <% @nation.members.each do |member| %>
-    <div id="<%member.id%>">
-      <p>Name: <%= member.name %></p>
-      <p>Photo: <%= member.photo %></p>
-      <p>Allies: <%= member.allies %></p>
-      <p>Enemies: <%= member.enemies %></p>
-      <p>Affiliation: <%= member.affiliation %></p>
+  <% @nation.first(25).each do |mem| %>
+    <div id="<%= mem[:_id]%>">
+      <p>Name: <%= mem[:name] %></p>
+      <p>Photo: <%= mem[:photoUrl] ? image_tag(mem[:photoUrl]) : "Unavailable" %></p>
+      <p>Allies: <%= mem[:allies].empty? ? "None" : mem[:allies]  %></p>
+      <p>Enemies: <%= mem[:enemies].empty? ? "None" : mem[:enemies] %></p>
+      <p>Affiliation: <%= mem[:affiliation] %></p>
     </div>
   <% end %>
 </div>

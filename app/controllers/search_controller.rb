@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    @nation = Nation.new
+    @nation = AvatarService.search(params[:nation])
   end
 
   private
